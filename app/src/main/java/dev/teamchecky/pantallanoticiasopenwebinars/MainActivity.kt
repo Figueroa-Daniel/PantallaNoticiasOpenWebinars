@@ -18,10 +18,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.twotone.Close
 import androidx.compose.material3.Card
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -40,6 +42,7 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -58,8 +61,8 @@ class MainActivity : ComponentActivity() {
                 Scaffold(modifier = Modifier.fillMaxSize()) {innerPadding ->
                     val state by viewModel.state.collectAsStateWithLifecycle()
                     when (state){
-                        is HomeState.Data -> HomeScreen(modifier = Modifier.padding(innerPadding),state = state)
-                        is HomeState.Loading -> LoadingScreen()
+                        is HomeState.Data -> HomeScreen(modifier = Modifier.padding(innerPadding),state = state as HomeState.Data)
+                        is HomeState.Loading -> LoadingFullScreen()
                     }
 
                 }
@@ -266,25 +269,55 @@ fun HomeScreen(modifier: Modifier, state: HomeState.Data){
         contentPadding = PaddingValues(16.dp)
     ) {
         item {
-            HeaderNews()
+            HeaderNews(
+                modifier = Modifier.fillMaxWidth()
+                    .padding(16.dp),
+                title = state.newSumary.headerNews.title,
+                description = state.newSumary.headerNews.description,
+                imageUrl = state.newSumary.headerNews.imageUrl
+            )
         }
         item {
             WeatherInfo(
-                weatherConditionType = WeatherConditionType.Sunny,
-                temperature = "25°C",
-                description = "Soleado"
+                modifier = Modifier.fillMaxWidth(),
+                weatherConditionType = state.newSumary.weather.type,
+                temperature =" ${state.newSumary.weather.temperature}",
+                description = state.newSumary.weather.description
             )
+            state.newSumary.categories.forEachIndexed { index, category ->
+                this@LazyColumn.item{
+                    CategoryHeader(
+                        title = category.title,
+                        modifier = Modifier.fillMaxWidth().padding(vertical = 16.dp)
+
+                    )
+                }
+                this@LazyColumn.itemsIndexed(
+                    items = category.items,
+                    key = {index, news -> news.id}
+                ) { index, news ->
+                    NewsItem(
+                        modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp),
+                        imageUrl = news.imageUrl,
+                        title = news.title,
+                        description = news.description,
+                        date = news.date,
+                        author = news.author
+                    )
+                    if (index != category.items.lastIndex){
+                        HorizontalDivider(
+                            thickness = Dp.Hairline,
+                            color = Color.Gray,
+                            modifier = Modifier.padding(bottom = 16.dp)
+
+                        )
+                    }
+
+                }
+
+            }
         }
-        CategoryHeader()
-        items() {
-            NewsItem(
-                title = "Title",
-                description = "Description",
-                imageUrl = "",
-                date = "01/01/2024",
-                author = "Author"
-            )
-        }
+
 
     }
 }
