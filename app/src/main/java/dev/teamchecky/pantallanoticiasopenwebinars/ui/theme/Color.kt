@@ -2,6 +2,11 @@ package dev.teamchecky.pantallanoticiasopenwebinars.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
+/**
+ * Definición de colores utilizados en el tema de la aplicación.
+ * @author Daniel Figueroa
+ */
+
 val Purple80 = Color(0xFFD0BCFF)
 val PurpleGrey80 = Color(0xFFCCC2DC)
 val Pink80 = Color(0xFFEFB8C8)

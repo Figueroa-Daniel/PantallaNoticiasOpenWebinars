@@ -6,7 +6,10 @@ import dev.teamchecky.pantallanoticiasopenwebinars.model.NewsSummaryModel
 import dev.teamchecky.pantallanoticiasopenwebinars.model.WeatherConditionType
 import dev.teamchecky.pantallanoticiasopenwebinars.model.WeatherModel
 
-
+/**
+ * Mock de noticias de última hora.
+ * @author Daniel Figueroa
+ */
 val latestNewsMock = CategoryModel(
     id = 1,
     title = "Últimas noticias",
@@ -62,6 +65,10 @@ val latestNewsMock = CategoryModel(
     )
 )
 
+/**
+ * Mock de noticias de deportes.
+ * @author Daniel Figueroa
+ */
 val sportNewsMock = CategoryModel(
     id = 2,
     title = "Deportes",
@@ -117,6 +124,10 @@ val sportNewsMock = CategoryModel(
     )
 )
 
+/**
+ * Mock de noticias de economía.
+ * @author Daniel Figueroa
+ */
 val economyNewsMock = CategoryModel(
     id = 3,
     title = "Economía",
@@ -188,6 +199,10 @@ val economyNewsMock = CategoryModel(
     )
 )
 
+/**
+ * Mock de noticias de desarrollo.
+ * @author Daniel Figueroa
+ */
 val developerNewsMock = CategoryModel(
     id = 4,
     title = "Desarrollo",
@@ -243,6 +258,10 @@ val developerNewsMock = CategoryModel(
     )
 )
 
+/**
+ * Mock de noticias de geografía.
+ * @author Daniel Figueroa
+ */
 val geographyNewsMock = CategoryModel(
     id = 5,
     title = "Geografía",
@@ -282,6 +301,10 @@ val geographyNewsMock = CategoryModel(
     )
 )
 
+/**
+ * Mock general que contiene todas las secciones de la aplicación.
+ * @author Daniel Figueroa
+ */
 val newsSummaryMock = NewsSummaryModel(
     headerNews = NewsModel(
         id = 31,

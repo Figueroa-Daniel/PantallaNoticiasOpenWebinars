@@ -51,8 +51,17 @@ import dev.teamchecky.pantallanoticiasopenwebinars.model.WeatherConditionType
 import dev.teamchecky.pantallanoticiasopenwebinars.ui.theme.HomeState
 import dev.teamchecky.pantallanoticiasopenwebinars.ui.theme.PantallaNoticiasOpenWebinarsTheme
 
+/**
+ * Actividad principal que gestiona el estado de la pantalla de inicio.
+ * @author Daniel Figueroa
+ */
 class MainActivity : ComponentActivity() {
     private val viewModel: HomeViewModel by viewModels()
+
+    /**
+     * Inicializa la actividad y configura el contenido de Compose.
+     * @author Daniel Figueroa
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -73,6 +82,10 @@ class MainActivity : ComponentActivity() {
 }
 
 
+/**
+ * Muestra una cabecera con una noticia destacada.
+ * @author Daniel Figueroa
+ */
 @Composable
 fun HeaderNews(
     title: String, description:String, imageUrl:String, modifier: Modifier = Modifier
@@ -134,6 +147,10 @@ fun HeaderNews(
 
 }
 
+/**
+ * Muestra información meteorológica actual.
+ * @author Daniel Figueroa
+ */
 @Composable
 fun WeatherInfo(
     weatherConditionType: WeatherConditionType,
@@ -180,6 +197,11 @@ fun WeatherInfo(
         }
     }
 }
+
+/**
+ * Muestra el título de una categoría de noticias.
+ * @author Daniel Figueroa
+ */
 @Composable
 fun CategoryHeader(title: String, modifier: Modifier = Modifier){
     Text(
@@ -192,6 +214,10 @@ fun CategoryHeader(title: String, modifier: Modifier = Modifier){
     )
 }
 
+/**
+ * Representa un elemento de noticia individual en la lista.
+ * @author Daniel Figueroa
+ */
 @Composable
 fun NewsItem(
     title: String,
@@ -254,6 +280,10 @@ fun NewsItem(
 }
 
 
+/**
+ * Devuelve el recurso de icono correspondiente al tipo de clima.
+ * @author Daniel Figueroa
+ */
 @Composable
 fun getWeatherIcon(weatherConditionType: WeatherConditionType) = when (weatherConditionType) {
     WeatherConditionType.Sunny -> R.drawable.ic_sunny
@@ -262,6 +292,10 @@ fun getWeatherIcon(weatherConditionType: WeatherConditionType) = when (weatherCo
     WeatherConditionType.Snowy -> R.drawable.ic_snowy
 }
 
+/**
+ * Pantalla principal que organiza la cabecera, clima y lista de noticias.
+ * @author Daniel Figueroa
+ */
 @Composable
 fun HomeScreen(modifier: Modifier, state: HomeState.Data){
     LazyColumn(
@@ -323,6 +357,10 @@ fun HomeScreen(modifier: Modifier, state: HomeState.Data){
 }
 
 
+/**
+ * Vista previa para el componente HeaderNews.
+ * @author Daniel Figueroa
+ */
 @Preview
 @Composable
 fun HeaderNewsPreview(){

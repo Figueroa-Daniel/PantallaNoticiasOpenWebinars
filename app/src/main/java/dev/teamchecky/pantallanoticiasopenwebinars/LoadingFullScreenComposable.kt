@@ -9,6 +9,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+/**
+ * Composable que muestra una pantalla de carga a pantalla completa.
+ * @author Daniel Figueroa
+ */
 @Composable
 fun LoadingFullScreen(modifier: Modifier = Modifier){
     Box(
